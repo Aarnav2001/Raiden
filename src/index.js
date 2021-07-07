@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 require('dotenv').config();
 
 ReactDOM.render(
-  <BrowserRouter basename="/demo/star-admin-free/react/template/demo_1/preview">
+  <BrowserRouter>
     <App />
   </BrowserRouter>
 , document.getElementById('root'));

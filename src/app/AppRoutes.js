@@ -23,7 +23,7 @@ const Login = lazy(() => import('./user-pages/Login'));
 const Register1 = lazy(() => import('./user-pages/Register'));
 
 const MapPage = lazy(() => import('./MapPage/MapPage'));
-
+const ongoing = lazy(() => import('./ongoing/projects'));
 
 class AppRoutes extends Component {
   render () {
@@ -31,7 +31,7 @@ class AppRoutes extends Component {
       <Suspense fallback={<Spinner/>}>
         <Switch>
           <Route exact path="/map" component={ MapPage } />
-
+          <Route exact path="/ongoing" component={ ongoing } />
           <Route exact path="/dashboard" component={ Dashboard } />
 
           <Route path="/basic-ui/buttons" component={ Buttons } />
