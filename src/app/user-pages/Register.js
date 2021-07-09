@@ -1,8 +1,23 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import {Button} from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router';
+import { signUp} from "../redux/actions/auth";
 
-export class Register extends Component {
-  render() {
+const Register = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const initialState = { username:"",email:"", password:"", confirmpassword:""};
+  const [formData,setformData] = useState(initialState);
+  const handleChange = (e) => {
+    setformData({...formData,[e.target.name]:e.target.value})
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
+    dispatch(signUp(formData,history))
+  };
     return (
       <div>
         <div className="d-flex align-items-center auth px-0">
@@ -16,35 +31,19 @@ export class Register extends Component {
                 <h6 className="font-weight-light">Signing up is easy. It only takes a few steps</h6>
                 <form className="pt-3">
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="Username" />
+                    <input type="text" className="form-control form-control-lg" name="username" id="exampleInputUsername1" placeholder="Username" onChange={handleChange} />
                   </div>
                   <div className="form-group">
-                    <input type="email" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" />
+                    <input type="email" className="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email" onChange={handleChange} />
                   </div>
                   <div className="form-group">
-                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
-                      <option>Country</option>
-                      <option>United States of America</option>
-                      <option>United Kingdom</option>
-                      <option>India</option>
-                      <option>Germany</option>
-                      <option>Argentina</option>
-                    </select>
+                    <input type="password" className="form-control form-control-lg" name="Password" id="exampleInputPassword1" placeholder="Password" onChange={handleChange} />
                   </div>
                   <div className="form-group">
-                    <input type="password" className="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" />
-                  </div>
-                  <div className="mb-4">
-                    <div className="form-check">
-                      <label className="form-check-label text-muted">
-                        <input type="checkbox" className="form-check-input" />
-                        <i className="input-helper"></i>
-                        I agree to all Terms & Conditions
-                      </label>
-                    </div>
+                    <input type="password" className="form-control form-control-lg" name="confirmPassword" id="exampleInputPassword1" placeholder="confirm Password" onChange={handleChange}/>
                   </div>
                   <div className="mt-3">
-                    <Link className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" to="/dashboard">SIGN UP</Link>
+                    <Button className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={handleSubmit}>SIGN UP</Button>
                   </div>
                   <div className="text-center mt-4 font-weight-light">
                     Already have an account? <Link to="/user-pages/login" className="text-primary">Login</Link>
@@ -56,7 +55,6 @@ export class Register extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default Register

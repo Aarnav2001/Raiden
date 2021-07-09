@@ -1,15 +1,24 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { Form } from 'react-bootstrap';
+/* eslint-disable */
+import React, { useState } from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import {Button, Form} from 'react-bootstrap';
+import { useDispatch } from "react-redux";
+import { useHistory } from 'react-router';
+import {signIn} from "../redux/actions/auth";
 
-export class Login extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      authentication: true
-    }
-  }
-  render() {
+const Login = () => {
+    const dispatch = useDispatch();
+    const history = useHistory();
+    const initialState = { email:"", password:""};
+    const [formData,setformData] = useState(initialState);
+    const handleChange = (e) => {
+        setformData({...formData,[e.target.name]:e.target.value})
+    };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(formData);
+        dispatch(signIn(formData,history))
+    };
     return (
       <div>
         <div className="d-flex align-items-center auth px-0">
@@ -23,31 +32,16 @@ export class Login extends Component {
                 <h6 className="font-weight-light">Sign in to continue.</h6>
                 <Form className="pt-3">
                   <Form.Group className="d-flex search-field">
-                    <Form.Control type="email" placeholder="Username" size="lg" className="h-auto" />
+                    <Form.Control name="email" type="email" placeholder="email" size="lg" className="h-auto" onChange={handleChange} />
                   </Form.Group>
                   <Form.Group className="d-flex search-field">
-                    <Form.Control type="password" placeholder="Password" size="lg" className="h-auto" />
+                    <Form.Control name="password" type="password" placeholder="Password" size="lg" className="h-auto" onChange={handleChange}/>
                   </Form.Group>
                   <div className="mt-3">
-                    <Link className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" to={ this.state.authentication ? "/map" : "/user-pages/login-1"}>SIGN IN</Link>
-                  </div>
-                  <div className="my-2 d-flex justify-content-between align-items-center">
-                    <div className="form-check">
-                      <label className="form-check-label text-muted">
-                        <input type="checkbox" className="form-check-input"/>
-                        <i className="input-helper"></i>
-                        Keep me signed in
-                      </label>
-                    </div>
-                    <a href="!#" onClick={event => event.preventDefault()} className="auth-link text-black">Forgot password?</a>
-                  </div>
-                  <div className="mb-2">
-                    <button type="button" className="btn btn-block btn-facebook auth-form-btn">
-                      <i className="mdi mdi-facebook mr-2"></i>Connect using facebook
-                    </button>
+                    <Button type="submit" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={handleSubmit} >SIGN IN</Button>
                   </div>
                   <div className="text-center mt-4 font-weight-light">
-                    Don't have an account? <Link to="/user-pages/register" className="text-primary">Create</Link>
+                    Don't have an account? <Link to="/user-pages/register-1" className="text-primary">Create</Link>
                   </div>
                 </Form>
               </div>
@@ -56,7 +50,7 @@ export class Login extends Component {
         </div>  
       </div>
     )
-  }
 }
-
-export default Login
+// to={ this.state.authentication ? "/map" : "/user-pages/login-1"}
+export default withRouter(Login)
+/* eslint-disable */
