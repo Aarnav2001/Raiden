@@ -1,9 +1,10 @@
 import React, {Component, useState} from 'react'
 import {Button, Modal, ModalBody, ProgressBar} from 'react-bootstrap';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Newform from "./newform";
-import {Link} from "react-router-dom";
-import Project from "../project";
+import {getSite} from "../../redux/actions/site";
+import {getsinglepro} from "../../redux/actions/singlepro";
+import Siteinfo from "../Site/Siteinfo";
 
 const ProjectCom = () => {
     const project = useSelector((state) => state.singlepro);
@@ -11,10 +12,18 @@ const ProjectCom = () => {
     const switchmodal = () => {
         setmodal((prevState)=>!prevState)
     };
-    const [Siteinfo,setSiteinfo]=useState({show: false,id: ""});
-    const switchSiteinfo = (siteid) => {
-        setSiteinfo({show: true,id: siteid})
+    const [Siteinfoid,setSiteinfoid]=useState({show: false,id: ""});
+    const switchSiteinfoid = (siteid) => {
+        setSiteinfoid((prevState)=>
+        {
+            return {show: !prevState.show, id: siteid}
+        });
     };
+    const Dispatcher = () => {
+        const dispatch = useDispatch();
+        dispatch(getSite(Siteinfoid.id));
+        return null;
+    }
     let Site = <div>no sites assigned</div>
     if(project.sites){
          Site = <div>
@@ -23,7 +32,7 @@ const ProjectCom = () => {
             {
                 project["sites"].map((site) => (
                     <div className="card m-2">
-                        <div className="card-body" onClick={switchSiteinfo}>
+                        <div className="card-body" onClick={()=>switchSiteinfoid(site.info)}>
                             <p>{site.name}</p>
                             <p>{site.des}</p>
                         </div>
@@ -58,7 +67,8 @@ const ProjectCom = () => {
             </div>
             {Site}
             <div>
-                {Siteinfo.show ? "hi":"ho"}
+                <Dispatcher/>
+                {Siteinfoid.show ? <Siteinfo/>:""}
             </div>
         </div>
     )

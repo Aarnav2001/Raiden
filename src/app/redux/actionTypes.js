@@ -10,3 +10,5 @@ export const LOGOUT = 'LOGOUT';
 
 export const CREATESITE = 'CREATESITE';
 export const GET = 'GET';
+
+export const GETSITE = 'GETSITE';

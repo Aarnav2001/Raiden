@@ -18,6 +18,8 @@ export const deleteProject = (id) => API.delete(`/projects/${id}`);
 export const getProject = (id) => API.get(`/projects/${id}`);
 export const creatSite = (id,site) => API.post(`/site/${id}`,site);
 
+export const getSite = (id) => API.get(`/siteinfo/${id}`);
+
 export const getprojects = () => API.get("/admin/get");
 export const signIn = (formData) => API.post("/admin/signin",formData);
 export const signUp = (formData) => API.post("/admin/",formData);
