@@ -55,6 +55,13 @@ class Sidebar extends Component {
         <div className="text-center sidebar-brand-wrapper d-flex align-items-center">
           </div>
         <ul className="nav">
+
+          <li className={ this.isPathActive('/home') ? 'nav-item active' : 'nav-item' }>
+            <Link className="nav-link" to="/home">
+              <i className="mdi mdi-television menu-icon"></i>
+              <span className="menu-title"><Trans>Home</Trans></span>
+            </Link>
+          </li>
                 
           <li className={ this.isPathActive('/map') ? 'nav-item active' : 'nav-item' }>
             <Link className="nav-link" to="/map">
@@ -67,6 +74,13 @@ class Sidebar extends Component {
             <Link className="nav-link" to="/ongoing">
               <i className="mdi mdi-television menu-icon"></i>
               <span className="menu-title"><Trans>Ongoing Projects</Trans></span>
+            </Link>
+          </li>
+
+          <li className={ this.isPathActive('/newProject') ? 'nav-item active' : 'nav-item' }>
+            <Link className="nav-link" to="/newProject">
+              <i className="mdi mdi-television menu-icon"></i>
+              <span className="menu-title"><Trans>new Project</Trans></span>
             </Link>
           </li>
 

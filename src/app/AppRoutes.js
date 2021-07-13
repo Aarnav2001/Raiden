@@ -24,6 +24,9 @@ const Register1 = lazy(() => import('./user-pages/Register'));
 
 const MapPage = lazy(() => import('./MapPage/MapPage'));
 const ongoing = lazy(() => import('./ongoing/projects'));
+const newProject = lazy(() => import('./new/newProject'));
+const home = lazy(() => import('./home/home'));
+const Project = lazy(() => import('./home/Project/projects'));
 
 class AppRoutes extends Component {
   render () {
@@ -32,7 +35,10 @@ class AppRoutes extends Component {
         <Switch>
           <Route exact path="/map" component={ MapPage } />
           <Route exact path="/ongoing" component={ ongoing } />
+          <Route exact path="/newProject" component={ newProject } />
+          <Route exact path="/home" component={ home } />
           <Route exact path="/dashboard" component={ Dashboard } />
+          <Route path="/Project/:id" render={(props) => <Project text="Hello, " {...props} />} />
 
           <Route path="/basic-ui/buttons" component={ Buttons } />
           <Route path="/basic-ui/dropdowns" component={ Dropdowns } />

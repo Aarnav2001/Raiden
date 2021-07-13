@@ -16,7 +16,6 @@ const Login = () => {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(formData);
         dispatch(signIn(formData,history))
     };
     return (

@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux';
 
-import forms from './form';
+import auth from './auth';
+import project from './Project';
+import singlepro from "./singlepro";
 
-export const reducers = combineReducers({ forms });
+export const reducers = combineReducers({ auth , project , singlepro});
