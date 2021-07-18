@@ -1,23 +1,11 @@
-import { GETSITE , UPDATESITE} from '../actionTypes';
+import { ADD_FIELD } from '../actionTypes';
 import * as api from '../api.js';
 
-export const getSite = (id) => async (dispatch) => {
+export const addfieldman = (PROJECT) => async (dispatch) => {
     try {
-        const { data } = await api.getSite(id);
+        const { data } = await api.addfieldman(PROJECT.fieldmanid,PROJECT.siteid) ?? "data";
 
-        console.log(data);
-
-        dispatch({ type: GETSITE, payload: data });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
- export const updatePost = (id, post) => async (dispatch) => {
-    try {
-        const { data } = await api.updateSite(id, post);
-
-        dispatch({ type: UPDATESITE, payload: data });
+        dispatch({ type: ADD_FIELD, payload: data });
     } catch (error) {
         console.log(error);
     }
@@ -43,6 +31,15 @@ export const getSite = (id) => async (dispatch) => {
 //     }
 // };
 
+// export const updatePost = (id, post) => async (dispatch) => {
+//     try {
+//         const { data } = await api.updatePost(id, post);
+//
+//         dispatch({ type: UPDATE, payload: data });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
 //
 // export const likePost = (id) => async (dispatch) => {
 //     const user = JSON.parse(localStorage.getItem('profile'));

@@ -1,23 +1,11 @@
-import { GETSITE , UPDATESITE} from '../actionTypes';
+import { FETCH_FIELD,CREATE_FIELD} from '../actionTypes';
 import * as api from '../api.js';
 
-export const getSite = (id) => async (dispatch) => {
+export const fetchfieldmen = () => async (dispatch) => {
     try {
-        const { data } = await api.getSite(id);
+        const { data } = await api.fetchfieldmen();
 
-        console.log(data);
-
-        dispatch({ type: GETSITE, payload: data });
-    } catch (error) {
-        console.log(error);
-    }
-};
-
- export const updatePost = (id, post) => async (dispatch) => {
-    try {
-        const { data } = await api.updateSite(id, post);
-
-        dispatch({ type: UPDATESITE, payload: data });
+        dispatch({ type: FETCH_FIELD, payload: data });
     } catch (error) {
         console.log(error);
     }
@@ -32,17 +20,26 @@ export const getSite = (id) => async (dispatch) => {
 //         console.log(error);
 //     }
 // };
-//
-// export const createProject = (project) => async (dispatch) => {
+
+export const createfieldman = (project) => async (dispatch) => {
+    try {
+        const { data } = await api.createfieldman(project);
+
+        dispatch({ type: CREATE_FIELD, payload: data.result });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+// export const updatePost = (id, post) => async (dispatch) => {
 //     try {
-//         const { data } = await api.createProject(project);
+//         const { data } = await api.updatePost(id, post);
 //
-//         dispatch({ type: CREATE, payload: data });
+//         dispatch({ type: UPDATE, payload: data });
 //     } catch (error) {
 //         console.log(error);
 //     }
 // };
-
 //
 // export const likePost = (id) => async (dispatch) => {
 //     const user = JSON.parse(localStorage.getItem('profile'));

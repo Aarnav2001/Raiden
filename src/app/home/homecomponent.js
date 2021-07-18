@@ -4,10 +4,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 
 const Homecomponent = () => {
-    const projects = useSelector((state) => state.project);
+    const projec = useSelector((state) => state.project).filter((pro) => pro.status);
+    const projects = projec.filter((pro) => pro.status.status === "ongoing");
     return (
         <div>
-            {projects.map((project) => (
+            {projects.reverse().map((project) => (
                 <Link to={`/Project/${project._id}`}>
                      <Project project={project}/>
                 </Link>

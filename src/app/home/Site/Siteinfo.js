@@ -1,31 +1,37 @@
 import React, { useState } from 'react';
-import {Button, Form, Modal, ModalBody, ProgressBar} from 'react-bootstrap';
+import {Button, Dropdown, Form, Modal, ModalBody, ProgressBar} from 'react-bootstrap';
 import {useDispatch, useSelector} from "react-redux";
-import {createProject} from "../../redux/actions/Project";
-import {createSite} from "../../redux/actions/singlepro";
+import Siteform from "./form";
 import {Link} from "react-router-dom";
 import Project from "../project";
-import Siteform from "./form";
+import {getSite} from "../../redux/actions/site";
+import {addfieldman} from "../../redux/actions/sitefieldman";
 
-const Siteinfo = ({id ,hide}) => {
+const Siteinfo = ({sitename,sitedes,siteid,sitefieldid}) => {
     const siteinfo = useSelector((state) => state.site);
-    const dispatch = useDispatch();
-    const initialState = { name:"", des:""};
-    const [formData,setformData] = useState(initialState);
-    const handleChange = (e) => {
-        setformData({...formData,[e.target.name]:e.target.value})
-    };
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(formData)
-        dispatch(createSite(id,formData))
-        hide();
-    };
+    const feildmen= useSelector((state) => state.fieldman);
     const [modal,setmodal]=useState(false);
-    const [modal2,setmodal2]=useState(false);
+    const[fieldmanid,setfieldmanid]=useState(sitefieldid);
     const switchmodal = () => {
         setmodal((prevState)=>!prevState)
     };
+    const Dispatcher = () => {
+        const dispatch = useDispatch();
+        const datafield={ fieldmanid:fieldmanid , siteid:siteid };
+        dispatch(addfieldman(datafield));
+        return null;
+    }
+    const Fieldmanusername = () => {
+        let username = "";
+        feildmen.map((man) => {
+
+            if (man._id === fieldmanid){
+                console.log(man.username);
+                username = man.username;
+            }
+    })
+        return username;
+    }
     const FirstHand= [
     {name:"Reference No",value: siteinfo.referenceNo},
     {name:"Offsite / Onsite/ Deemed Onsite",value: siteinfo.offsite},
@@ -40,10 +46,12 @@ const Siteinfo = ({id ,hide}) => {
     {name:"Rent (INR)",value: siteinfo.rent},
     {name:"Advance Rental ( in months)",value: siteinfo.advanceRental},
     {name:"Shop Area",value: siteinfo.shopArea},
+    {name:"Rent Free Period ( in days)",value: siteinfo.rentFreePerid},
+    {name:"Floor at which shop ( Ground / First )",value: siteinfo.floorAtWhichShop},
     {name:"Carpet Area",value: siteinfo.carpetArea},
     {name:"Width of the shop  ( from inside of walls )",value: siteinfo.width},
     {name:"Depth of the shop ( from inside of walls)",value: siteinfo.depth},
-    {name:"Height of the sho",value: siteinfo.height},
+    {name:"Height of the shop",value: siteinfo.height},
     {name:"Availability of Shutter (Y/N)",value: siteinfo.availabilityOfShutter},
     {name:"Signage Size",value: siteinfo.signageSize},
     {name:"Space for AC ODU in nos",value: siteinfo.space},
@@ -82,13 +90,14 @@ const Siteinfo = ({id ,hide}) => {
     {name:"Nodal Branch Name, Address with SOL ID",value: siteinfo.nodalBranchNameAddressWithSOLID},
     {name:"Distance from ATM to Nodal Branch",value: siteinfo.distanceFromATMToNodalBranch},
     {name:"Loading Frequency",value: siteinfo.loadingFrequency},
+        {name:"Any other observationy",value: siteinfo.anyOtherObservation}
     ]
     return (
         <div>
             <Modal show={modal} onHide={() => setmodal(false)} aria-labelledby="modal-label">
                 <ModalBody>
                     <div>
-                        <Siteform hide={switchmodal}/>
+                        <Siteform hide={switchmodal} siteinfo={siteinfo}/>
                     </div>
                 </ModalBody>
             </Modal>
@@ -96,12 +105,31 @@ const Siteinfo = ({id ,hide}) => {
                     <div className="col-lg-12 grid-margin stretch-card">
                         <div className="card">
                             <div className="card-body">
-                                <h4 className="card-title">Hoverable Table</h4>
-                                <p className="card-description"> Add className <code>.table-hover</code>
-                                </p>
-                                <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg" onClick={switchmodal}>
-                                    <i className="mdi mdi-plus-circle-outline"/>
-                                </button>
+                                <div className="d-flex justify-content-between">
+                                    <div>
+                                        <h2 className="card-title">NAME: {sitename}</h2>
+                                        <p className="card-description">DESCRIPTION: {sitedes}
+                                        </p>
+                                    </div>
+                                    <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-sm my-3"
+                                            onClick={switchmodal}>
+                                        <i className=" mdi mdi-pencil"/>
+                                    </button>
+                                </div>
+                                <Dispatcher/>
+                                <div className="d-flex mt-3">
+                                    <h5>FIELDMAN:</h5>
+                                    <Dropdown>
+                                        <Dropdown.Toggle variant="btn btn-outline-info" id="dropdownMenuOutlineButton6">
+                                            <Fieldmanusername/>
+                                        </Dropdown.Toggle>
+                                        <Dropdown.Menu>
+                                            {feildmen.map((man) => (
+                                                <Dropdown.Item
+                                                    onClick={() => setfieldmanid(man._id)}>{man.username}</Dropdown.Item>
+                                            ))}
+                                        </Dropdown.Menu>
+                                    </Dropdown></div>
                                 <div className="table-responsive my-2">
                                     <table className="table table-hover">
                                         <thead>
@@ -113,7 +141,7 @@ const Siteinfo = ({id ,hide}) => {
                                         {FirstHand.map((field) => (
                                             <tr>
                                                 <td>{field.name}</td>
-                                                <td className="text-danger"> {field.value} </td>
+                                                <td> {field.value} </td>
                                                 <td></td>
                                             </tr>
                                         ))}
@@ -131,7 +159,7 @@ const Siteinfo = ({id ,hide}) => {
                                         {Area.map((field) => (
                                             <tr>
                                                 <td>{field.name}</td>
-                                                <td className="text-danger"> {field.value} </td>
+                                                <td> {field.value} </td>
                                                 <td></td>
                                             </tr>
                                         ))}
@@ -149,7 +177,7 @@ const Siteinfo = ({id ,hide}) => {
                                         {Branch.map((field) => (
                                             <tr>
                                                 <td>{field.name}</td>
-                                                <td className="text-danger"> {field.value} </td>
+                                                <td> {field.value} </td>
                                                 <td></td>
                                             </tr>
                                         ))}
@@ -167,7 +195,7 @@ const Siteinfo = ({id ,hide}) => {
                                         {CRA.map((field) => (
                                             <tr>
                                                 <td>{field.name}</td>
-                                                <td className="text-danger"> {field.value} </td>
+                                                <td> {field.value} </td>
                                                 <td></td>
                                             </tr>
                                         ))}

@@ -1,6 +1,9 @@
 import React, {useState} from 'react'
 import {Modal, ModalBody} from "react-bootstrap";
 import Newform from "./newform";
+import {useSelector} from "react-redux";
+import {Link} from "react-router-dom";
+import Project from "../home/project";
 
 const Newcomponent = () =>{
     const [modal,setmodal]=useState(false);
@@ -8,7 +11,8 @@ const Newcomponent = () =>{
     const switchmodal = () => {
         setmodal((prevState)=>!prevState)
     };
-        return (
+    const projects = useSelector((state) => state.project);
+    return (
             <div>
                 <Modal show={modal} onHide={() => setmodal(false)} aria-labelledby="modal-label">
                     <ModalBody>
@@ -36,6 +40,13 @@ const Newcomponent = () =>{
                             <i className="mdi mdi-plus-circle-outline"/>
                         </button>
                     </div>
+                </div>
+                <div>
+                    {projects.reverse().map((project) => (
+                        <Link to={`/Project/${project._id}`}>
+                            <Project project={project}/>
+                        </Link>
+                    ))}
                 </div>
             </div>
         )

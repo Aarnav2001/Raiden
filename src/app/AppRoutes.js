@@ -28,6 +28,9 @@ const newProject = lazy(() => import('./new/newProject'));
 const home = lazy(() => import('./home/home'));
 const Project = lazy(() => import('./home/Project/projects'));
 
+const analysis = lazy(() => import('./Analysis/analysis'));
+const fieldman = lazy(() => import('./Fieldman/fieldman'));
+
 class AppRoutes extends Component {
   render () {
     return (
@@ -39,6 +42,9 @@ class AppRoutes extends Component {
           <Route exact path="/home" component={ home } />
           <Route exact path="/dashboard" component={ Dashboard } />
           <Route path="/Project/:id" render={(props) => <Project text="Hello, " {...props} />} />
+
+          <Route exact path="/Analysis" component={ analysis } />
+          <Route exact path="/Fieldman" component={ fieldman } />
 
           <Route path="/basic-ui/buttons" component={ Buttons } />
           <Route path="/basic-ui/dropdowns" component={ Dropdowns } />

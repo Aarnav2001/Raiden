@@ -70,6 +70,20 @@ class Sidebar extends Component {
             </Link>
           </li>
 
+          <li className={ this.isPathActive('/Analysis') ? 'nav-item active' : 'nav-item' }>
+            <Link className="nav-link" to="/Analysis">
+              <i className="mdi mdi-television menu-icon"></i>
+              <span className="menu-title"><Trans>Analysis</Trans></span>
+            </Link>
+          </li>
+
+          <li className={ this.isPathActive('/Fieldman') ? 'nav-item active' : 'nav-item' }>
+            <Link className="nav-link" to="/Fieldman">
+              <i className="mdi mdi-television menu-icon"></i>
+              <span className="menu-title"><Trans>Fieldman</Trans></span>
+            </Link>
+          </li>
+
           <li className={ this.isPathActive('/ongoing') ? 'nav-item active' : 'nav-item' }>
             <Link className="nav-link" to="/ongoing">
               <i className="mdi mdi-television menu-icon"></i>

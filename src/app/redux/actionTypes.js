@@ -10,5 +10,11 @@ export const LOGOUT = 'LOGOUT';
 
 export const CREATESITE = 'CREATESITE';
 export const GET = 'GET';
+export const UPDATESITE = 'UPDATESITE';
+
+export const FETCH_FIELD = 'FETCH_FIELD';
+export const CREATE_FIELD = 'CREATE_FIELD';
+
+export const ADD_FIELD="ADD_FIELD";
 
 export const GETSITE = 'GETSITE';

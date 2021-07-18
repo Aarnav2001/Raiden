@@ -7,9 +7,11 @@ const ProjectCom = () => {
         return (
             <div>
                 <div className="page-header">
-                    <h3 className="page-title"> Ongoing Projects </h3>
+                    <h3 className="page-title"> Analysis </h3>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
+                            <li className="breadcrumb-item"><a href="!#" onClick={event => event.preventDefault()}>all</a></li>
+                            <li className="breadcrumb-item active" aria-current="page">mine</li>
                         </ol>
                     </nav>
                 </div>
