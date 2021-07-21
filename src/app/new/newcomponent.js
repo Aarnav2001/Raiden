@@ -21,31 +21,32 @@ const Newcomponent = () =>{
                         </div>
                     </ModalBody>
                 </Modal>
-                <div className="card m-3">
-                    <div className="card-body">
-                        <h4 className="card-title">add new without ml</h4>
-                        <p className="card-description"> Add new project with already known location
-                        </p>
-                        <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg" onClick={switchmodal}>
-                            <i className="mdi mdi-plus-circle-outline"/>
-                        </button>
+                <div className="col-sm-6">
+                    <div className="card m-3">
+                        <div className="card-body">
+                            <h4 className="card-title">add new without ml</h4>
+                            <p className="card-description"> Add new project with already known location
+                            </p>
+                            <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg"
+                                    onClick={switchmodal}>
+                                <i className="mdi mdi-plus-circle-outline"/>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="card m-3">
+                        <div className="card-body">
+                            <h4 className="card-title">add new with ml</h4>
+                            <p className="card-description"> Add new project with new location
+                            </p>
+                            <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg">
+                                <i className="mdi mdi-plus-circle-outline"/>
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div className="card m-3">
-                    <div className="card-body">
-                        <h4 className="card-title">add new with ml</h4>
-                        <p className="card-description"> Add new project with new location
-                        </p>
-                        <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg">
-                            <i className="mdi mdi-plus-circle-outline"/>
-                        </button>
-                    </div>
-                </div>
-                <div>
+                <div className="row">
                     {projects.reverse().map((project) => (
-                        <Link to={`/Project/${project._id}`}>
                             <Project project={project}/>
-                        </Link>
                     ))}
                 </div>
             </div>

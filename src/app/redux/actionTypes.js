@@ -17,4 +17,6 @@ export const CREATE_FIELD = 'CREATE_FIELD';
 
 export const ADD_FIELD="ADD_FIELD";
 
+export const GET_DATA = 'GET_DATA';
+
 export const GETSITE = 'GETSITE';

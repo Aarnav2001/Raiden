@@ -74,7 +74,7 @@ const ProjectCom = () => {
                     <h4>existing :</h4>
                     <div>
                         <div className="d-flex justify-content-between">
-                            {fieldmen.reverse().map((project) => (
+                            {fieldmen.map((project) => (
                                 <Projectinfo project={project}/>
                             ))}
                         </div>

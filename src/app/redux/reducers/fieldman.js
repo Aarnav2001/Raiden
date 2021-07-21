@@ -5,11 +5,11 @@ export default (posts = [], action) => {
         // case FETCH:
         //     return action.payload;
         case FETCH_FIELD:
-            return action.payload;
+            return action.payload.reverse();
         // case LIKE:
         //     return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
         case CREATE_FIELD:
-            return [...posts, action.payload];
+            return [ action.payload,...posts];
         // case UPDATE:
         //     return posts.map((post) => (post._id === action.payload._id ? action.payload : post));
         // case DELETE:

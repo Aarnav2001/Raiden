@@ -24,6 +24,8 @@ export const fetchfieldmen = () => API.get("/fieldman");
 export const createfieldman = (formData) => API.post("/fieldman/",formData);
 export const addfieldman=(id1,id2)=>API.get(`/site/addfield/${id1}/${id2}`);
 
+export const getdata=() => API.get("/data");
+
 export const getprojects = () => API.get("/admin/get");
 export const signIn = (formData) => API.post("/admin/signin",formData);
 export const signUp = (formData) => API.post("/admin/",formData);

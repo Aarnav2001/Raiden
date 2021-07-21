@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
+import {useSelector} from "react-redux";
+import {ProgressBar} from "react-bootstrap";
 const Map = withScriptjs(withGoogleMap((props) =>{
 
     useEffect(() => {
@@ -15,42 +17,62 @@ const Map = withScriptjs(withGoogleMap((props) =>{
      }, 
      []);
 
-    const recycleCenters = props.recycleCenters
-
-
+    const datas = useSelector((state) => state.data);
    const [selectedCenter, setSelectedCenter] = useState(null);
-   return (       
-       <GoogleMap zoom={4.5} center={ { lat:  23.2599, lng: 77.4126 } } >  
-     
-     {selectedCenter && (
-        <InfoWindow
-            onCloseClick={() => {
-                setSelectedCenter(null);
-            }}
-            position={{
-                lat: selectedCenter.latitude,
-                lng: selectedCenter.longitude
-            }}
-        >
-            <div>
-                <h3>I can render all sorts of shit here</h3>
-            </div>
-        </InfoWindow>
-        )}
+    const iconUrl ="https://loc8tor.co.uk/wp-content/uploads/2015/08/stencil.png";
+    const Scaled= (data) => {
+        const h = (data/6000) * 90;
+        const w = (data/6000) * 42;
+        return new window.google.maps.Size(h, w);
+    }
+    let temp;
+   return (
+       <div className="row">
+           <div className="col-sm-8">
+               <GoogleMap zoom={4.5} center={{lat: 23.2599, lng: 77.4126}}>
 
-       {recycleCenters.map(center => (            
-           <Marker                 
-              key={center.id}                 
-              position={{                     
-                 lat: center.latitude,                     
-                 lng: center.longitude                 
-              }}
-              onClick={() => {
-                setSelectedCenter(center);
-             }}
-           />        
-        ))};
-       </GoogleMap>
+               {selectedCenter && (
+                   <InfoWindow
+                       onCloseClick={() => {
+                           setSelectedCenter(null);
+                       }}
+                       position={{
+                           lat: selectedCenter.latitude,
+                           lng: selectedCenter.longitude
+                       }}
+                   >
+                       <div>
+                           <h3>I can render all sorts of shit here</h3>
+                       </div>
+                   </InfoWindow>
+               )}
+               {datas.map((data) => (
+                   <Marker
+                       key={data.FIELD1}
+                       position={{
+                           lat: data.Latitude,
+                           lng: data.Longitude
+                       }}
+                       icon={{url: iconUrl, scaledSize: Scaled(data.Monthly)}}
+                       onClick={() => {
+                           props.setter((prevState)=> {
+                               temp = {
+                                   bool:!prevState.bool,
+                                   Name:data.Name,
+                                   Status:data.Status,
+                                   District:data.District,
+                                   Population:data.Population,
+                                   Number:data.Number,
+                                   Monthly:data.Monthly,
+                           }
+                           return temp;
+                           });
+                       }}
+                   />
+               ))}
+           </GoogleMap></div>
+
+       </div>
     )
             }))
 

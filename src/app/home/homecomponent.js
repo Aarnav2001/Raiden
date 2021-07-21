@@ -8,11 +8,11 @@ const Homecomponent = () => {
     const projects = projec.filter((pro) => pro.status.status === "ongoing");
     return (
         <div>
+            <div className="row">
             {projects.reverse().map((project) => (
-                <Link to={`/Project/${project._id}`}>
-                     <Project project={project}/>
-                </Link>
+                    <Project project={project}/>
         ))}
+            </div>
         </div>
     )
 }

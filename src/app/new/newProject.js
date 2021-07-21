@@ -6,7 +6,7 @@ export class newProject
     extends Component {
     render() {
         return (
-            <div className="col-lg-6 grid-margin stretch-card">
+            <div>
                 <Dispatcher/>
                 <Newcomponent/>
             </div>
