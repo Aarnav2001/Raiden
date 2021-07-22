@@ -1,4 +1,4 @@
-import { ADD_FIELD } from '../actionTypes';
+import { ADD_FIELD , ADD_TIS_FIELD} from '../actionTypes';
 import * as api from '../api.js';
 
 export const addfieldman = (PROJECT) => async (dispatch) => {
@@ -6,6 +6,16 @@ export const addfieldman = (PROJECT) => async (dispatch) => {
         const { data } = await api.addfieldman(PROJECT.fieldmanid,PROJECT.siteid) ?? "data";
 
         dispatch({ type: ADD_FIELD, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const addTISfieldman = (PROJECT) => async (dispatch) => {
+    try {
+        const { data } = await api.addTISfieldman(PROJECT.fieldmanid,PROJECT.siteid) ?? "data";
+
+        dispatch({ type: ADD_TIS_FIELD, payload: data });
     } catch (error) {
         console.log(error);
     }

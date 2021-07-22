@@ -7,4 +7,6 @@ import site from "./site"
 import fieldman from "./fieldman";
 import sitefieldman from "./sitefieldman";
 import data from "./data";
-export const reducers = combineReducers({ auth , project , singlepro , site , fieldman , sitefieldman, data});
+import TIS from "./TIS";
+
+export const reducers = combineReducers({ auth , project , singlepro , site , fieldman , sitefieldman, data, TIS});

@@ -70,10 +70,10 @@ const ProjectCom = () => {
                             </div>
                         </Form></div></div>
                 </div>
-                <div className="col-sm-8">
+                <div>
                     <h4>existing :</h4>
                     <div>
-                        <div className="d-flex justify-content-between">
+                        <div className="row">
                             {fieldmen.map((project) => (
                                 <Projectinfo project={project}/>
                             ))}

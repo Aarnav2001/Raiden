@@ -4,11 +4,11 @@ import {useSelector} from "react-redux";
 import Project from "../home/project";
 const ProjectCom = () => {
     const projec = useSelector((state) => state.project).filter((pro) => pro.status);
-    const projects = projec.filter((pro) => pro.status.status === "ongoing");
+    const projects = projec.filter((pro) => pro.status.status === "Done");
         return (
             <div>
                 <div className="page-header">
-                    <h3 className="page-title"> Ongoing Projects </h3>
+                    <h3 className="page-title"> Completed Projects </h3>
                     <nav aria-label="breadcrumb">
                         <ol className="breadcrumb">
                         </ol>

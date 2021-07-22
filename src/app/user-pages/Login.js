@@ -29,7 +29,7 @@ const Login = () => {
                 </div>
                 <h4>Hello! let's get started</h4>
                 <h6 className="font-weight-light">Sign in to continue.</h6>
-                <Form className="pt-3">
+                <Form className="pt-5">
                   <Form.Group className="d-flex search-field">
                     <Form.Control name="email" type="email" placeholder="email" size="lg" className="h-auto" onChange={handleChange} />
                   </Form.Group>

@@ -1,8 +1,10 @@
-import { ADD_FIELD} from '../actionTypes';
+import { ADD_FIELD,ADD_TIS_FIELD} from '../actionTypes';
 
 export default (posts = [], action) => {
     switch (action.type) {
         case ADD_FIELD:
+            return action.payload;
+        case ADD_TIS_FIELD:
             return action.payload;
         // case FETCH_ALL:
         //     return action.payload;

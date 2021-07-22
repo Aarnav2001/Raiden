@@ -202,6 +202,17 @@ const Siteinfo = ({sitename,sitedes,siteid,sitefieldid}) => {
                                         </tbody>
                                     </table>
                                 </div>
+                                {siteinfo.images? siteinfo.images[0]?<h5>IMAGES:</h5>:"":""}
+                                <div className="row">
+                                    {siteinfo.images?
+                                        siteinfo.images.map((field) => (
+                                        <div className="card col-sm-6">
+                                            <div className="card-body">
+                                                <img src={field}/>
+                                            </div>
+                                        </div>
+                                    )):""}
+                                </div>
                             </div>
                         </div>
                     </div>

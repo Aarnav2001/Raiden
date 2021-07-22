@@ -11,41 +11,19 @@ const Newcomponent = () =>{
     const switchmodal = () => {
         setmodal((prevState)=>!prevState)
     };
-    const projects = useSelector((state) => state.project);
+    const projec = useSelector((state) => state.project).filter((pro) => pro.status);
+    const projects = projec.filter((pro) => pro.status.status === "new");
     return (
             <div>
-                <Modal show={modal} onHide={() => setmodal(false)} aria-labelledby="modal-label">
-                    <ModalBody>
-                        <div>
-                            <Newform hide={switchmodal}/>
-                        </div>
-                    </ModalBody>
-                </Modal>
-                <div className="col-sm-6">
-                    <div className="card m-3">
-                        <div className="card-body">
-                            <h4 className="card-title">add new without ml</h4>
-                            <p className="card-description"> Add new project with already known location
-                            </p>
-                            <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg"
-                                    onClick={switchmodal}>
-                                <i className="mdi mdi-plus-circle-outline"/>
-                            </button>
-                        </div>
-                    </div>
-                    <div className="card m-3">
-                        <div className="card-body">
-                            <h4 className="card-title">add new with ml</h4>
-                            <p className="card-description"> Add new project with new location
-                            </p>
-                            <button type="button" className="btn btn-secondary btn-rounded btn-icon btn-lg">
-                                <i className="mdi mdi-plus-circle-outline"/>
-                            </button>
-                        </div>
-                    </div>
+                <div className="page-header">
+                    <h3 className="page-title"> New Projects </h3>
+                    <nav aria-label="breadcrumb">
+                        <ol className="breadcrumb">
+                        </ol>
+                    </nav>
                 </div>
                 <div className="row">
-                    {projects.reverse().map((project) => (
+                    {projects.map((project) => (
                             <Project project={project}/>
                     ))}
                 </div>

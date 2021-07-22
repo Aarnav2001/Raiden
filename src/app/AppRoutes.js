@@ -3,19 +3,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Spinner from '../app/shared/Spinner';
 
-const Dashboard = lazy(() => import('./dashboard/Dashboard'));
-
-const Buttons = lazy(() => import('./basic-ui/Buttons'));
-const Dropdowns = lazy(() => import('./basic-ui/Dropdowns'));
-
-const BasicElements = lazy(() => import('./form-elements/BasicElements'));
-
-const BasicTable = lazy(() => import('./tables/BasicTable'));
-
-const Mdi = lazy(() => import('./icons/Mdi'));
-
-const ChartJs = lazy(() => import('./charts/ChartJs'));
-
 const Error404 = lazy(() => import('./error-pages/Error404'));
 const Error500 = lazy(() => import('./error-pages/Error500'));
 
@@ -29,7 +16,10 @@ const home = lazy(() => import('./home/home'));
 const Project = lazy(() => import('./home/Project/projects'));
 
 const analysis = lazy(() => import('./Analysis/analysis'));
+const add = lazy(() => import('./Add/newProject'));
+const complete = lazy(() => import('./complete/projects'));
 const fieldman = lazy(() => import('./Fieldman/fieldman'));
+const estimation = lazy(()=>import("./estimaition/newProject"))
 
 class AppRoutes extends Component {
   render () {
@@ -40,22 +30,13 @@ class AppRoutes extends Component {
           <Route exact path="/ongoing" component={ ongoing } />
           <Route exact path="/newProject" component={ newProject } />
           <Route exact path="/home" component={ home } />
-          <Route exact path="/dashboard" component={ Dashboard } />
           <Route path="/Project/:id" render={(props) => <Project text="Hello, " {...props} />} />
 
           <Route exact path="/Analysis" component={ analysis } />
           <Route exact path="/Fieldman" component={ fieldman } />
-
-          <Route path="/basic-ui/buttons" component={ Buttons } />
-          <Route path="/basic-ui/dropdowns" component={ Dropdowns } />
-
-          <Route path="/form-Elements/basic-elements" component={ BasicElements } />
-
-          <Route path="/tables/basic-table" component={ BasicTable } />
-
-          <Route path="/icons/mdi" component={ Mdi } />
-
-          <Route path="/charts/chart-js" component={ ChartJs } />
+          <Route exact path="/add" component={ add } />
+          <Route exact path="/complete" component={ complete } />
+          <Route exact path="/estimation" component={ estimation } />
 
 
           <Route path="/user-pages/login-1" component={ Login } />

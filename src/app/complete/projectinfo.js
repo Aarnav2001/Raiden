@@ -2,11 +2,11 @@ import React from 'react'
 
 const Projectinfo = ({project}) => {
         return (
-                <div className="col-sm-3 m-3">
+                <div className="col-lg-6 grid-margin stretch-card">
                     <div className="card">
                         <div className="card-body">
-                            <h4 className="card-title">{project.username}</h4>
-                            <p className="card-description"> {project.email}
+                            <h4 className="card-title">{project.name}</h4>
+                            <p className="card-description"> {project.des}
                             </p>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import { GET, CREATESITE } from '../actionTypes';
+import {GET, CREATESITE, FETCH, CONFIRM , DONE} from '../actionTypes';
 import * as api from '../api.js';
 
 export const getsinglepro = (id) => async (dispatch) => {
@@ -14,6 +14,26 @@ export const createSite = (id, site) => async (dispatch) => {
         const { data } = await api.creatSite(id, site);
 
         dispatch({ type: CREATESITE, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const confirmSite = (id1,id2) => async (dispatch) => {
+    try {
+        const { data } = await api.confirm(id1,id2);
+
+        dispatch({ type: CONFIRM, payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const done = (id) => async (dispatch) => {
+    try {
+        const { data } = await api.done(id);
+
+        dispatch({ type: DONE, payload: data });
     } catch (error) {
         console.log(error);
     }

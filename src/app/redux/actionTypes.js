@@ -5,6 +5,9 @@ export const FETCH_ALL = 'FETCH_ALL';
 export const FETCH = 'FETCH';
 export const LIKE = 'LIKE';
 
+export const CONFIRM = "CONFIRM"
+export const DONE = "DONE"
+
 export const AUTH = 'AUTH';
 export const LOGOUT = 'LOGOUT';
 
@@ -15,7 +18,11 @@ export const UPDATESITE = 'UPDATESITE';
 export const FETCH_FIELD = 'FETCH_FIELD';
 export const CREATE_FIELD = 'CREATE_FIELD';
 
+export const GETTIS = 'GETTIS';
+export const UPDATETIS = 'UPDATETIS';
+
 export const ADD_FIELD="ADD_FIELD";
+export const ADD_TIS_FIELD="ADD_TIS_FIELD";
 
 export const GET_DATA = 'GET_DATA';
 
